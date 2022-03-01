@@ -21,9 +21,7 @@
 # (To load the new updates in the program):  
 #                                            %load_ext autoreload
 #                                            %autoreload 2
-#
-#
-# Source: The Complete Guide to Option Pricing Formulas- Espen Gaarder Haug
+
 
 
 
