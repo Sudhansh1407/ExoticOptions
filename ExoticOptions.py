@@ -1,4 +1,4 @@
-# Solutions for the pricing the exotic derivatives
+# Pricing Library for Exotic options
 #
 # Contents:
 #    Part 1 (Closed-form solutions)
