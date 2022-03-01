@@ -11,7 +11,7 @@
 #       ->  Asset or Nothing Option
 #
 #    Part 2 (Simulation-based approximations)
-#       ->  Lookback Options
+#       ->  
 #
 #
 # @author Sudhansh Dua
