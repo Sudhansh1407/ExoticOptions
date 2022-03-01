@@ -118,7 +118,7 @@ def SimpleChooser(S, K, t, T, r, sig, b=None):
         return w
     
     else:
-        raise TypeError("t cannot be greater than or equal to T")
+        raise ValueError("t cannot be greater than or equal to T")
 
         
         
@@ -174,7 +174,7 @@ def DownAndInCallBarrier(S, H, K, CR, T, r, sig, b = None):
             return A - B + D + E
         
     else:
-        raise TypeError("S cannot be less than H")
+        raise ValueError("S cannot be less than H")
     
 
 def DownAndInPutBarrier(S, H, K, CR, T, r, sig, b = None):
@@ -229,7 +229,7 @@ def DownAndInPutBarrier(S, H, K, CR, T, r, sig, b = None):
             return A + E
     
     else:
-        raise TypeError("S cannot be less than H")
+        raise ValueError("S cannot be less than H")
         
         
 
@@ -287,7 +287,7 @@ def UpAndInCallBarrier(S, H, K, CR, T, r, sig, b = None):
             return B - C + D + E
         
     else:
-        raise TypeError("S cannot be greater than or equal to H")
+        raise ValueError("S cannot be greater than or equal to H")
         
         
     
@@ -344,7 +344,7 @@ def UpAndInPutBarrier(S, H, K, CR, T, r, sig, b = None):
             return C + E 
         
     else:
-        raise TypeError("S cannot be greater than or equal to H")
+        raise ValueError("S cannot be greater than or equal to H")
 
         
 def InBarrier(S, H, K, CR, T, r, sig, b = None, typ = None):
@@ -516,7 +516,7 @@ def DownAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
         else:
             return B - D + F
     else:
-        raise TypeError("S cannot be less than H")
+        raise ValueError("S cannot be less than H")
     
 
     
@@ -571,7 +571,7 @@ def DownAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
             return F
         
     else:
-        raise TypeError("S cannot be less than H")
+        raise ValueError("S cannot be less than H")
     
     
     
@@ -625,7 +625,7 @@ def UpAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
             return A - B + C - D + F
     
     else:
-        raise TypeError("S cannot be greater than or equal to H")
+        raise ValueError("S cannot be greater than or equal to H")
     
     
     
@@ -679,7 +679,7 @@ def UpAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
         else:
             return A - C + F
     else:
-        raise TypeError("S cannot be greater than or equal to H")
+        raise ValueError("S cannot be greater than or equal to H")
     
     
     
