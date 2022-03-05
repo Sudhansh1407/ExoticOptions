@@ -468,8 +468,8 @@ def InBarrier(S, H, K, CR, T, r, sig, b = None, typ = None):
             
 def DownAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
     """
-    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
-    It is possible to include a prespecified cash rebate K, which is paid out if the option is knocked out before expiration.
+    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
+    It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
     
     Down-and-out call S > H 
         Payoff: max(S — K; 0) if S > H before T else CR at hit. 
@@ -523,8 +523,8 @@ def DownAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
 
 def DownAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
     """
-    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
-    It is possible to include a prespecified cash rebate K, which is paid out if the option is knocked out before expiration.
+    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
+    It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
     
     Down-and-out put S > H 
         Payoff: max(K - S; 0) if S > H before T else CR at hit. 
@@ -577,8 +577,8 @@ def DownAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
     
 def UpAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
     """
-    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
-    It is possible to include a prespecified cash rebate K, which is paid out if the option is knocked out before expiration.
+    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
+    It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
     
     Up-and-out call S < H 
         Payoff: max(S — K; 0) if S < H before T else CR at hit. 
@@ -632,8 +632,8 @@ def UpAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
     
 def UpAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
     """
-    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
-    It is possible to include a prespecified cash rebate K, which is paid out if the option is knocked out before expiration.
+    The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
+    It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
     
     Up-and-out put S < H 
         Payoff: max(K - S; 0) if S < H before T else CR at hit. 
@@ -687,7 +687,7 @@ def UpAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
 def OutBarrier(S, H, K, CR, T, r, sig, b = None, typ = None):
     """
     The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
-    It is possible to include a prespecified cash rebate K, which is paid out if the option is knocked out before expiration.
+    It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
     
     Down-and-out call S > H 
         Payoff: max(S — K; 0) if S > H before T else CR at hit. 
