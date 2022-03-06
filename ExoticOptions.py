@@ -145,8 +145,9 @@ def DownAndInCallBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Down-and-in
+    # Condition for Down Barrier
     if (S>H):
+        
         # Default value
         if b is None: b = r
 
@@ -200,8 +201,9 @@ def DownAndInPutBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Down-and-in
+    # Condition for Down Barrier
     if (S>H):
+        
         # Default value
         if b is None: b = r
 
@@ -256,7 +258,7 @@ def UpAndInCallBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Up-and-in
+    # Condition for Up Barrier
     if (S<H):
         
         # Default value
@@ -314,7 +316,7 @@ def UpAndInPutBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Up-and-in
+    # Condition for Up Barrier
     if (S<H):
         
         # Default value
@@ -487,7 +489,7 @@ def DownAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Down-and-in
+    # Condition for Down Barrier
     if (S>H):
         
         # Default value
@@ -542,7 +544,7 @@ def DownAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Down-and-in
+    # Condition for Down Barrier
     if (S>H):
         # Default value
         if b is None: b = r
@@ -596,7 +598,7 @@ def UpAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Up-and-in
+    # Condition for Up Barrier
     if (S<H):
         # Default value
         if b is None: b = r
@@ -651,7 +653,7 @@ def UpAndOutPutBarrier(S, H, K, CR, T, r, sig, b = None):
         sig- constant volatility
         b- cost of carry; b = r -----> Default
     """
-    # Condition for Up-and-in
+    # Condition for Up Barrier
     if (S<H):
         # Default value
         if b is None: b = r
@@ -990,9 +992,16 @@ def GBM_Simulation_Path(S0, T, r, sig, n, N, Z):
     .......
     Sn = Sn-1 * exp[(r - (sig*sig/2))*(n*dt) + sig * Zn]    or     S0 * exp[(r - (sig*sig/2))*(n*dt) + sig * (Z1 + Z2 + ...... + Zn)]
     
+    
+    Arguments:
+        S0- Spot Price at t = 0
+        T- Time to maturity
+        r- constant risk-free rate of return
+        sig- constant volatility
+        n- no. of iterations
+        N- no. of time intervals
+        Z-
     """
-
-        
     zcum = np.cumsum(Z, axis=1)
     delta = T/N
     dt = np.array([delta*i for i in range(1, N+1)])
