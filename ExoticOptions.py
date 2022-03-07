@@ -475,8 +475,8 @@ def DownAndOutCallBarrier(S, H, K, CR, T, r, sig, b = None):
     
     Down-and-out call S > H 
         Payoff: max(S — K; 0) if S > H before T else CR at hit. 
-        C(X>H) = A - C + F
-        C(x<H) = B - D + F
+        C(K>H) = A - C + F
+        C(K<H) = B - D + F
             where ita = 1, phi = 1
     
     Arguments:
@@ -693,8 +693,8 @@ def OutBarrier(S, H, K, CR, T, r, sig, b = None, typ = None):
     
     Down-and-out call S > H 
         Payoff: max(S — K; 0) if S > H before T else CR at hit. 
-        C(X>H) = A - C + F
-        C(x<H) = B - D + F
+        C(K>H) = A - C + F
+        C(K<H) = B - D + F
             where ita = 1, phi = 1
             
     Down-and-out put S > H 
@@ -1029,15 +1029,3 @@ def Call_payoff(S, K):
     K- Strike Price
     """
     return np.maximum(S-K, 0)
-
-
-
-
-
-
-
-
-        
-
-
-    
