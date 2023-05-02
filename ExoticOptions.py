@@ -11,7 +11,8 @@
 #       ->  Asset or Nothing Option
 #
 #    Part 2 (Simulation-based approximations)
-#       ->  
+#       ->  Digital option : Binomial Tree
+#       ->  Digital option : Monte Carlo Simulation  
 #
 #
 # @author Sudhansh Dua
@@ -1029,3 +1030,111 @@ def Call_payoff(S, K):
     K- Strike Price
     """
     return np.maximum(S-K, 0)
+
+def n_period_bin_model_uncond(S0, K, T, r, sig, n_steps = 10000, typ = "None", b = "None"):
+    """
+    The digital options pay $1 at expiration if the option is in-the-money.
+    The payoff from a call is 0 if S < K and 1 if S > K.
+    The payoff from a put is 0 if S > K and 1 if S < K.
+    
+    Arguments:
+        S0- Spot Price at t = 0
+        K- Strike Price
+        CR- Cash Rebate
+        T- Time to maturity
+        r- constant risk-free rate of return
+        sig- constant volatility
+        N- number of periods/time steps; (if N = 2 and T = 1, one time step => 6 months)
+        b- cost of carry; b = r -----> Default
+        
+        typ-  "C": Call 
+              "P": Put;   typ = C ---> Default
+    """
+    # Default values
+    if typ is None: typ = "C"
+    if b is None: b = r
+    
+    delta_t = T/n_steps
+
+    u = np.exp(sig * (delta_t ** 0.5))
+    d = 1/u
+
+    R = np.exp(r * delta_t)
+
+    qu = (R - d)/(u - d)
+    qd = 1 - qu
+
+    
+    stock_prices = []
+    discounted_payoffs = []
+    k = 0
+
+    # defining n choose k function
+    def comb(n, k):
+        nCk = 1
+        i = 1
+        while i <= k:
+            nCk *= (n - k + i)/i 
+            i+=1
+        return nCk
+    
+    while k < n_steps + 1:
+        stock_price_k = S0 * (d ** k) * (u ** (n_steps - k)) 
+
+        stock_prices.append(stock_price_k)
+
+        if typ == "C":
+            if stock_prices[k] > K:
+                discounted_payoffs.append( comb(n_steps, k) * (qd ** k) * (qu ** (n_steps - k)) * np.exp(-r * T))
+        else:
+            if stock_prices[k] < K:
+                discounted_payoffs.append( comb(n_steps, k) * (qd ** k) * (qu ** (n_steps - k)) * np.exp(-r * T))
+        k+=1
+
+    return sum(discounted_payoffs)
+
+
+def DigitalOption_MC(S0, K, T, r, sig, M = 10000, typ = "None", b = "None"):
+    """
+    The digital options pay $1 at expiration if the option is in-the-money.
+    The payoff from a call is 0 if S < K and 1 if S > K.
+    The payoff from a put is 0 if S > K and 1 if S < K.
+    
+    Arguments:
+        S0- Spot Price at t = 0
+        K- Strike Price
+        CR- Cash Rebate
+        T- Time to maturity
+        r- constant risk-free rate of return
+        sig- constant volatility
+        M- No. of simulations
+        b- cost of carry; b = r -----> Default
+        
+        typ-  "C": Call 
+              "P": Put;   typ = C ---> Default
+    """
+    # Default values
+    if typ is None: typ = "C"
+    if b is None: b = r
+    
+    W = np.random.randn(M, 1)
+    prices = S0 * np.exp((r - (0.5 * sig **2)) * T + sig * np.sqrt(T) * W)
+
+    p = prices - K
+    payoffs = []
+    for i in range(M):
+        x = 1 if p[i] > 0 else 0
+        payoffs.append(x) 
+    
+
+    if typ == "C":
+
+        price = np.mean(payoffs) * np.exp(-r * T)
+    else:
+        # 1 - n/M = (M - n)/M where n is the number of times call digital was in the money
+        price = (1 - np.mean(payoffs)) * np.exp(-r * T)
+
+    # return payoff
+    return price
+
+
