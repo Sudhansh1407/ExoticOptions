@@ -1103,7 +1103,6 @@ def DigitalOption_MC(S0, K, T, r, sig, M = 10000, typ = "None", b = "None"):
     Arguments:
         S0- Spot Price at t = 0
         K- Strike Price
-        CR- Cash Rebate
         T- Time to maturity
         r- constant risk-free rate of return
         sig- constant volatility
@@ -1138,3 +1137,44 @@ def DigitalOption_MC(S0, K, T, r, sig, M = 10000, typ = "None", b = "None"):
     return price
 
 
+def Option_MC(S0, K, T, r, sig, M = 10000, typ = "None", b = "None"):
+    """
+    The payoff from a call is 0 if S < K and S - K if S > K.
+    The payoff from a put is 0 if S > K and S - K if S < K.
+    
+    Arguments:
+        S0- Spot Price at t = 0
+        K- Strike Price
+        T- Time to maturity
+        r- constant risk-free rate of return
+        sig- constant volatility
+        M- No. of simulations
+        b- cost of carry; b = r -----> Default
+        
+        typ-  "C": Call 
+              "P": Put;   typ = C ---> Default
+    """
+    # Default values
+    if typ is None: typ = "C"
+    if b is None: b = r
+    
+    W = np.random.randn(M, 1)
+    prices = S0 * np.exp((r - (0.5 * sig **2)) * T + sig * np.sqrt(T) * W)
+
+    p = prices - K
+    payoffs = [] 
+
+    
+    for i in range(M):
+        
+        if typ == "C":
+            x = p[i] if p[i] > 0 else 0
+            payoffs.append(x)
+        else:
+            # signs reversed!
+            x = -p[i] if p[i] < 0 else 0
+            payoffs.append(x)
+    
+    price = sum(payoffs)/M * np.exp(-r * T)
+
+    return price[0]
