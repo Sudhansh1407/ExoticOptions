@@ -13,8 +13,8 @@
 #       ->  Power Option V2
 #
 #    Part 2 (Simulation-based approximations)
-#       ->  Digital option: Binomial Tree
-#       ->  Digital option: Monte Carlo Simulation   
+#       ->  Digital option : Binomial Tree
+#       ->  Digital option : Monte Carlo Simulation   
 #       ->  
 #
 # @author Sudhansh Dua
@@ -122,7 +122,7 @@ def simple_chooser(S, K, t, T, r, sig, b=None):
 
         
         
-def down_and_in_barrier_call(S, H, K, CR =0, T, r, sig, b = None):
+def down_and_in_barrier_call(S, H, K, T, r, sig, CR =0, b = None):
     """
     The In options are paid for today but first come into existence if the asset 
     price S hits the barrier H before expiration. It is possible to include 
@@ -180,7 +180,7 @@ def down_and_in_barrier_call(S, H, K, CR =0, T, r, sig, b = None):
         raise ValueError("S cannot be less than H")
     
 
-def down_and_in_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
+def down_and_in_barrier_put(S, H, K, T, r, sig, CR =0, b = None):
     """
     The In options are paid for today but first come into existence if the asset 
     price S hits the barrier H before expiration. It is possible to include 
@@ -238,7 +238,7 @@ def down_and_in_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
         
         
 
-def up_and_in_barrier_call(S, H, K, CR = 0, T, r, sig, b = None):
+def up_and_in_barrier_call(S, H, K, T, r, sig, CR = 0, b = None):
     """
     The In options are paid for today but first come into existence if the asset 
     price S hits the barrier H before expiration. It is possible to include 
@@ -297,7 +297,7 @@ def up_and_in_barrier_call(S, H, K, CR = 0, T, r, sig, b = None):
         
         
     
-def up_and_in_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
+def up_and_in_barrier_put(S, H, K, T, r, sig, CR = 0, b = None):
     """
     The In options are paid for today but first come into existence if the asset price S hits the barrier H before expiration. It is possible to include a prespecified cash rebate CR, which is paid out at option expiration if the option has not been knocked in during its lifetime.
     
@@ -352,7 +352,7 @@ def up_and_in_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
         raise ValueError("S cannot be greater than or equal to H")
 
         
-def in_barrier(S, H, K, CR = 0, T, r, sig, b = None, typ = None):
+def in_barrier(S, H, K, T, r, sig, CR = 0, b = None, typ = None):
     """
     The In options are paid for today but first come into existence if the asset price S hits the barrier H before expiration. It is possible to include a prespecified cash rebate CR, which is paid out at option expiration if the option has not been knocked in during its lifetime.
     
@@ -472,7 +472,7 @@ def in_barrier(S, H, K, CR = 0, T, r, sig, b = None, typ = None):
                 return C + E
             
             
-def down_and_out_barrier_call(S, H, K, CR = 0, T, r, sig, b = None):
+def down_and_out_barrier_call(S, H, K, T, r, sig, CR = 0, b = None):
     """
     The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
     It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
@@ -529,7 +529,7 @@ def down_and_out_barrier_call(S, H, K, CR = 0, T, r, sig, b = None):
 
     
 
-def down_and_out_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
+def down_and_out_barrier_put(S, H, K, T, r, sig, CR = 0, b = None):
     """
     The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
     It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
@@ -587,7 +587,7 @@ def down_and_out_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
     
     
     
-def up_and_out_barrier_call(S, H, K, CR = 0, T, r, sig, b = None):
+def up_and_out_barrier_call(S, H, K, T, r, sig, CR = 0, b = None):
     """
     The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
     It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
@@ -644,7 +644,7 @@ def up_and_out_barrier_call(S, H, K, CR = 0, T, r, sig, b = None):
     
     
     
-def up_and_out_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
+def up_and_out_barrier_put(S, H, K, T, r, sig, CR = 0, b = None):
     """
     The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
     It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
@@ -702,7 +702,7 @@ def up_and_out_barrier_put(S, H, K, CR = 0, T, r, sig, b = None):
     
     
     
-def out_barrier(S, H, K, CR = 0, T, r, sig, b = None, typ = None):
+def out_barrier(S, H, K, T, r, sig, CR = 0, b = None, typ = None):
     """
     The Out options are similar to standard options except that the option becomes worthless if the asset price S hits the barrier before expiration. 
     It is possible to include a prespecified cash rebate CR, which is paid out if the option is knocked out before expiration.
@@ -945,7 +945,7 @@ def digital_option(S, K, T, r, sig, typ = None, b = None):
         return np.exp(-r*T) * norm.cdf(-d2)
 
 
-def cash_or_nothing(S, K, CR = 1, T, r, sig, typ = None, b = None):
+def cash_or_nothing(S, K, T, r, sig, CR = 1, typ = None, b = None):
     """
     The cash-or-nothing options pay an amount CR at expiration if the option is in-the-money.
     The payoff from a call is 0 if S < K and CR, if S > K. 
