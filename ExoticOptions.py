@@ -9,7 +9,8 @@
 #       ->  Digital Option
 #       ->  Cash or Nothing Option
 #       ->  Asset or Nothing Option
-#       ->  Power Option
+#       ->  Power Option V1
+#       ->  Power Option V2
 #
 #    Part 2 (Simulation-based approximations)
 #       ->  Digital option: Binomial Tree
