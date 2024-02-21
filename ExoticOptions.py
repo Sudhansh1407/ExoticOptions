@@ -94,9 +94,7 @@ def simple_chooser(S, K, t, T, r, sig, b=None):
     Arguments:
     ---------------
         S : Spot Price
-        H : Barrier
         K : Strike Price
-        CR : Cash Rebate; CR = 0 -----> Default
         T : Time to maturity
         r : risk-free rate of return (constant)
         sig : volatility (constant)
